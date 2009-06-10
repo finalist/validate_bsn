@@ -1,1 +1,52 @@
-== Validate BSN
+= Validate BSN
+
+Validation for Dutch social security number formatting (BSN: Burger Service Nummer)
+
+== Installation
+
+Just install it as normal:
+
+  ./script/plugin install git://github.com:finalist/validate_bsn.git
+
+
+== Usage
+
+Use it as a regular ActiveRecord validation:
+
+
+  class Person <  ActiveRecord::Base
+  
+    validates_bsn_format :bsn, :second_bsn, :on => :create
+
+  end
+
+All the same options are available validates_each.
+
+Outside ActiveRecord, you can use it like this:
+
+  ValidateBSN.valid?(123456782)
+
+== i18n
+
+For ActiveRecord errors, the error key is :invalid.
+
+To change this for something more appropriate for a BSN, you can override it per attribute:
+
+  nl:
+    activerecord:
+      errors:
+        models:
+          person:
+            attributes:
+              bsn:
+                invalid: "is geen geldig BSN"
+
+== Todo
+
+Some test macros, so you test easier. Think:
+
+  describe Person do
+    it { should validate_bsn_format(:bsn) }
+  end
+
+Copyright 2009, Finalist IT Group. Released under the MIT License.
