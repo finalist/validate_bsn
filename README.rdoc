@@ -16,11 +16,11 @@ Use it as a regular ActiveRecord validation:
 
   class Person <  ActiveRecord::Base
   
-    validates_bsn_format :bsn, :second_bsn, :on => :create
+    validates_bsn_format :bsn, :allow_blank => true
 
   end
 
-All the same options are available validates_each.
+All the same options are available as in {validates_each}[http://api.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M002104].
 
 Outside ActiveRecord, you can use it like this:
 
