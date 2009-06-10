@@ -41,12 +41,26 @@ To change this for something more appropriate for a BSN, you can override it per
               bsn:
                 invalid: "is geen geldig BSN"
 
-== Todo
+== RSpec matchers and macros
 
-Some test macros, so you test easier. Think:
+This is highly experimental, so take care.
+
+You can use both matchers or macros. The following three examples are the same:
 
   describe Person do
+
     it { should validate_bsn_format(:bsn) }
+
+    should_validate_bsn_format(:bsn)
+
+    it "should validate BSN" do
+      subject.should validate_bsn_format(:bsn)
+    end
+
   end
+
+To enable, edit <tt>spec_helper.rb</tt> and add:
+
+  config.include(ValidateBSN::Macros, :type => :model)
 
 Copyright 2009, Finalist IT Group. Released under the MIT License.
